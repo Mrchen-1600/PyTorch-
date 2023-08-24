@@ -18,8 +18,7 @@ class Model(torch.nn.Module):
             torch.nn.ReLU(inplace=True),
             torch.nn.Conv2d(192, 128, kernel_size=3, padding=1, stride=1),  # input(192, 13, 13) output(128, 13, 13)
             torch.nn.ReLU(inplace=True),
-            torch.nn.MaxPool2d(kernel_size=3, padding=0, stride=2), # input(128, 13, 13) output(128, 6, 6)
-        )
+            torch.nn.MaxPool2d(kernel_size=3, padding=0, stride=2), # input(128, 13, 13) output(128, 6, 6) )
 
         self.classifier = torch.nn.Sequential( # 定义全连接层图像分类
             # dropout随机失活神经元，默认比例0.5，一般加在全连接层防止过拟合 提升模型泛化能力。卷积层一般很少加，因为卷积参数少，不易过拟合
@@ -30,8 +29,7 @@ class Model(torch.nn.Module):
             torch.nn.Linear(2048, 2048),
             torch.nn.ReLU(inplace=True),
             torch.nn.Dropout(0.5),
-            torch.nn.Linear(2048, num_classes),
-        )
+            torch.nn.Linear(2048, num_classes),)
 
     def forward(self, x):
        x = self.features(x)
